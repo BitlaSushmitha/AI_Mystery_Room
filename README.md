@@ -15,7 +15,7 @@ An interactive fictional investigation game built with React, Vite, Express, Mon
 3. Run `npm run dev` to start the API at `http://localhost:5000` and the Vite client at `http://localhost:5173`.
 4. Open the Vite URL and create an investigation. The API health endpoint is `/api/v1/health`.
 
-For production, set `CLIENT_URL` to the frontend origin and `VITE_API_BASE_URL` to the API origin at client build time. Run `npm run build`, then `npm start` for the server. Deploy MongoDB and keep Gemini credentials and session secrets server-side. Optional image/video generation is not configured; images are clearly marked placeholders and CCTV is rendered as simulated transcript text.
+For production, the Express server serves both the built React app and API from one origin. See the [step-by-step deployment walkthrough](DEPLOYMENT.md); the included [Render Blueprint](render.yaml) configures the service. Deploy MongoDB separately and keep Gemini credentials and session secrets in the hosting provider's environment settings. Optional image/video generation is not configured; images are clearly marked placeholders and CCTV is rendered as simulated transcript text.
 
 See [docs/architecture.md](docs/architecture.md) for the data flow and API contract. The implementation plan and full product requirements are in [spec.md](spec.md).
 
