@@ -1,0 +1,4 @@
+import mongoose from 'mongoose';
+const schema=new mongoose.Schema({title:{type:String,required:true},scenario:{type:String,required:true},category:{type:String,required:true},difficulty:{type:String,required:true},briefing:{type:mongoose.Schema.Types.Mixed,required:true},suspects:{type:[mongoose.Schema.Types.Mixed],required:true},evidence:{type:[mongoose.Schema.Types.Mixed],required:true},timeline:{type:[mongoose.Schema.Types.Mixed],required:true},solution:{type:mongoose.Schema.Types.Mixed,required:true,select:false},status:{type:String,enum:['generating','ready','failed'],default:'ready'},schemaVersion:{type:Number,required:true,default:1},generationMetadata:{type:mongoose.Schema.Types.Mixed,default:{} }},{timestamps:true,collection:'cases'});
+schema.index({status:1,createdAt:-1});
+export default mongoose.models.Case||mongoose.model('Case',schema);

@@ -1,0 +1,14 @@
+import {Router} from 'express';
+import {createCase,getCase,getEvidence,getSingleEvidence,markReviewed,saveNotes} from '../controllers/caseController.js';
+import {getResults,submitAccusation} from '../controllers/accusationController.js';
+import {requireSession} from '../services/sessionService.js';
+const router=Router();
+router.post('/cases',createCase);
+router.get('/cases/:caseId',requireSession,getCase);
+router.get('/cases/:caseId/evidence',requireSession,getEvidence);
+router.get('/cases/:caseId/evidence/:evidenceId',requireSession,getSingleEvidence);
+router.put('/cases/:caseId/evidence/:evidenceId/reviewed',requireSession,markReviewed);
+router.put('/cases/:caseId/notes',requireSession,saveNotes);
+router.post('/cases/:caseId/accusation',requireSession,submitAccusation);
+router.get('/cases/:caseId/results',requireSession,getResults);
+export default router;

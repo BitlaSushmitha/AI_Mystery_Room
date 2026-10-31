@@ -1,0 +1,3 @@
+import 'dotenv/config';
+export const env = { nodeEnv: process.env.NODE_ENV || 'development', port: Number(process.env.PORT || 5000), clientUrl: process.env.CLIENT_URL || 'http://localhost:5173', mongoUri: process.env.MONGODB_URI || '', geminiApiKey: process.env.GEMINI_API_KEY || '', geminiModel: process.env.GEMINI_MODEL || 'gemini-2.5-flash', sessionSecret: process.env.SESSION_SECRET || '' };
+export function validateEnv(){const missing=['MONGODB_URI','GEMINI_API_KEY','SESSION_SECRET'].filter(k=>!process.env[k]);if(missing.length)throw new Error(`Missing required environment variables: ${missing.join(', ')}`);if(env.sessionSecret.length<32)throw new Error('SESSION_SECRET must contain at least 32 characters.');}

@@ -1,0 +1,3 @@
+import {env} from '../config/env.js';
+export function notFound(req,res){res.status(404).json({success:false,error:{code:'NOT_FOUND',message:'The requested route could not be found.',details:[]}})}
+export function errorHandler(err,req,res,next){if(res.headersSent)return next(err);const status=err.status|| (err.name==='CastError'?400:500);if(env.nodeEnv!=='production')console.error(`${err.code||err.name||'ERROR'}: ${err.message}`);res.status(status).json({success:false,error:{code:err.code||(status===400?'BAD_REQUEST':status===503?'SERVICE_UNAVAILABLE':'INTERNAL_ERROR'),message:status>=500?(env.nodeEnv==='production'?'The service could not complete your request.':err.message):err.message,details:[]}})}
